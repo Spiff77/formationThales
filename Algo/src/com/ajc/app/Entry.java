@@ -1,5 +1,6 @@
 package com.ajc.app;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Entry {
@@ -7,32 +8,22 @@ public class Entry {
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		
-		/*String nom1 = sc.nextLine();
-		String nom2 = sc.nextLine();*/
+
 		
 		
-		int level = 1;
-		int subLevel = 2;
-		String levelstr = level == 1 ? "INFO" : "MINOR"; // 1: info 2: minor 
-		
-		int age = sc.nextInt();
-		
-		String etat = age >= 18 ? "MAJEUR" : "MINEUR";
-		
-		System.out.println("ETAT: "+etat);
-		
-		
-		if(level == 1) {
-			levelstr = "INFO";
-		}else {
-			levelstr = "MINOR";
+		for (int i = 0; i < 3; i++) {
+			System.out.println("i="+i);
+			
+			for (int j = 0; j < 3; j++) {
+				System.out.println("j="+j);
+				if(j==2) {
+					break;
+				}
+			}
+			
 		}
+
 		
-		/*int age = askForAge();
-		
-		String firstName = askForFirstName();
-		displayInfos(firstName, age);*/
 	} 
 	
 	
