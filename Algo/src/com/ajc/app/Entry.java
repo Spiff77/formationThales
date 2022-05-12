@@ -7,10 +7,35 @@ public class Entry {
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		int age = askForAge();
+		
+		/*String nom1 = sc.nextLine();
+		String nom2 = sc.nextLine();*/
+		
+		int level = 3; // 1: info 2: minor 3: major 4: critical
+		
+		switch(level) {
+			case 1 :
+				System.out.println("INFO");
+				break;
+			case 2 :
+				System.out.println("MINOR");
+				break;
+			case 3 :
+				System.out.println("MAJOR");
+				break;
+			case 4 :
+				System.out.println("CRITICAL");
+				break;
+			default :
+				System.out.println("UNKNOW");
+			
+		}
+		
+		/*int age = askForAge();
+		
 		String firstName = askForFirstName();
-		displayInfos(firstName, age);
-	}
+		displayInfos(firstName, age);*/
+	} 
 	
 	
 	public static int askForAge() {
@@ -24,7 +49,12 @@ public class Entry {
 	}
 	
 	public static void displayInfos(String name, int age) {
-		System.out.println("Okay " + name +" , tu as donc " + age + " ans");
+		System.out.print("Okay " + name +" , tu as donc " + age + " ans ");
+		if(age >= 18) {
+			System.out.println("et tu es majeur");
+		}else {
+			System.out.println("et tu es mineur");			
+		}
 	}
 	
 }
