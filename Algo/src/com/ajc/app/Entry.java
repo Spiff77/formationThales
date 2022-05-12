@@ -11,24 +11,22 @@ public class Entry {
 		/*String nom1 = sc.nextLine();
 		String nom2 = sc.nextLine();*/
 		
-		int level = 3; // 1: info 2: minor 3: major 4: critical
 		
-		switch(level) {
-			case 1 :
-				System.out.println("INFO");
-				break;
-			case 2 :
-				System.out.println("MINOR");
-				break;
-			case 3 :
-				System.out.println("MAJOR");
-				break;
-			case 4 :
-				System.out.println("CRITICAL");
-				break;
-			default :
-				System.out.println("UNKNOW");
-			
+		int level = 1;
+		int subLevel = 2;
+		String levelstr = level == 1 ? "INFO" : "MINOR"; // 1: info 2: minor 
+		
+		int age = sc.nextInt();
+		
+		String etat = age >= 18 ? "MAJEUR" : "MINEUR";
+		
+		System.out.println("ETAT: "+etat);
+		
+		
+		if(level == 1) {
+			levelstr = "INFO";
+		}else {
+			levelstr = "MINOR";
 		}
 		
 		/*int age = askForAge();
