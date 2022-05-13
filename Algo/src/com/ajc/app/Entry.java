@@ -7,21 +7,66 @@ public class Entry {
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-
-		valueSum();
-		/*           
-		 	Écrire un algorithme qui demande successivement 10 nombres à l’utilisateur.  Le programme lui ressortira ensuite le plus grand. 
-             Entrez le nombre numéro 1 : 12
-             Entrez le nombre numéro 2 : 14
-            ...
-             Entrez le nombre numéro 10 : 6
-             Le plus grand nombre saisi est : 14
-            Modifier ensuite l’algorithme pour que le programme affiche de surcroît la position du nombre le plus grand. 
-            ex: La position du nombre le plus grand est : 2e nombre saisi.
-		 */
 		
+		String notes = "12-10-18-5";
+		String[] notesTab = notes.split("-");
+		int total = 0;
+		for (int i = 0; i < notesTab.length; i++) {
+			total += Integer.parseInt(notesTab[i]);
+		}
+		
+		System.out.println(total);
+		
+		/*boolean[][] tab = generateTab();
+		
+		while(true) {
+			System.out.print("Colonne ?");
+			int x = sc.nextInt();
+			
+			tab[getYAxisEmptySlot(tab, x - 1)][x-1] = true;
+			
+			for (int i = 0; i < tab.length; i++) {
+				for (int j = 0; j < tab.length; j++) {
+					System.out.print(tab[i][j] ? "X" : ".");
+				}
+				System.out.println();
+			}
+		}*/
 	} 
 	
+	public static int getYAxisEmptySlot(boolean[][] tab, int colonne) {
+		for (int i = tab.length -1; i >= 0; i--) {
+			if(!tab[i][colonne]) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public static boolean[][] generateTab(){
+		boolean[][] tab = new boolean[5][5];
+		
+		return tab;
+	}
+	
+	public static void zeroAtEnd() {
+		int[] tab = {5,5,1,0,3,0,5,0,6};
+		int index = 0;
+		
+		for (int i = 0; i < tab.length; i++) {
+			if(tab[i] != 0) {
+				tab[index] = tab[i];
+				if(index != i) {
+					tab[i] = 0;
+				}
+				index++;
+			}
+		}
+		for (int i = 0; i < tab.length; i++) {
+			System.out.print(tab[i]);
+		}
+		
+	}
 	
 	public static void biggerNumber() {
 		
