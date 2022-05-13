@@ -8,31 +8,27 @@ public class Entry {
 	
 	public static void main(String[] args) {
 		
-		String notes = "12-10-18-5";
-		String[] notesTab = notes.split("-");
-		int total = 0;
-		for (int i = 0; i < notesTab.length; i++) {
-			total += Integer.parseInt(notesTab[i]);
-		}
 		
-		System.out.println(total);
-		
-		/*boolean[][] tab = generateTab();
+		boolean[][] tab = generateTab();
 		
 		while(true) {
+			displayGrid(tab);
 			System.out.print("Colonne ?");
 			int x = sc.nextInt();
 			
 			tab[getYAxisEmptySlot(tab, x - 1)][x-1] = true;
 			
-			for (int i = 0; i < tab.length; i++) {
-				for (int j = 0; j < tab.length; j++) {
-					System.out.print(tab[i][j] ? "X" : ".");
-				}
-				System.out.println();
-			}
-		}*/
+		}
 	} 
+	
+	public static void displayGrid(boolean[][] tab) {
+		for (int i = 0; i < tab.length; i++) {
+			for (int j = 0; j < tab[i].length; j++) {
+				System.out.print(tab[i][j] ? "X" : ".");
+			}
+			System.out.println();
+		}
+	}
 	
 	public static int getYAxisEmptySlot(boolean[][] tab, int colonne) {
 		for (int i = tab.length -1; i >= 0; i--) {
@@ -44,7 +40,12 @@ public class Entry {
 	}
 	
 	public static boolean[][] generateTab(){
-		boolean[][] tab = new boolean[5][5];
+		System.out.println("Taille de la grille? ex (5-3)");
+		String sizeStr = sc.next();
+		String[] sizeTab = sizeStr.split("-");
+		
+		boolean[][] tab = new boolean[Integer.parseInt(sizeTab[1])]
+		                             [Integer.parseInt(sizeTab[0])];
 		
 		return tab;
 	}
