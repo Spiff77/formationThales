@@ -8,7 +8,7 @@ public class Entry {
 	
 	public static void main(String[] args) {
 
-		biggerNumber();
+		valueSum();
 		/*           
 		 	Écrire un algorithme qui demande successivement 10 nombres à l’utilisateur.  Le programme lui ressortira ensuite le plus grand. 
              Entrez le nombre numéro 1 : 12
@@ -21,6 +21,7 @@ public class Entry {
 		 */
 		
 	} 
+	
 	
 	public static void biggerNumber() {
 		
@@ -39,6 +40,19 @@ public class Entry {
 		
 	}
 	
+	public static void valueSum() {
+		
+		int numbers[] = {2,7,4,-5,11,5,20};
+		
+		for (int i = 0; i < numbers.length; i++) {
+			for (int j = i+1; j < numbers.length; j++) {
+				if(numbers[i] + numbers[j] == 15) {					
+					System.out.println(numbers[i] + "+" + numbers[j] + "=" + 15);
+				}
+			}
+		}
+		
+	}
 	
 	public static int askForAge() {
 		System.out.println("Quel est ton age?");
