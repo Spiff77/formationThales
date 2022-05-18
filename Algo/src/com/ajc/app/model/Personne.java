@@ -1,11 +1,13 @@
 package com.ajc.app.model;
 
+import java.util.ArrayList;
+
 public class Personne {
 	
 	private int age = 10;
 	public String prenom;
 	private String nom;
-	private Adresse adresse;
+	private ArrayList<Adresse> adresse = new ArrayList<Adresse>();
 	private Horse horse;
 	
 	
@@ -15,21 +17,20 @@ public class Personne {
 		this.age = p.age;
 	}
 	
-	public Personne(String prenom, String nom, Adresse adresse) {
-		System.out.println("C1");
+	public Personne(String prenom, String nom) {
 		this.prenom = prenom;
 		this.nom = nom;
-		this.adresse = adresse;
 	}
 	
-	public Personne(String prenom, String nom, int age, Adresse adresse) {
-		this(prenom, nom, adresse);
+	
+	public Personne(String prenom, String nom, int age) {
+		this(prenom, nom);
 		System.out.println("C2");
 		this.setAge(age);
 	}
 	
-	public Personne create(String prenom, String nom, int age,  Adresse adresse) {
-		return new Personne(prenom, nom, age, adresse);
+	public Personne create(String prenom, String nom, int age) {
+		return new Personne(prenom, nom, age);
 	}
 	
 	public int getAge() {
@@ -40,11 +41,12 @@ public class Personne {
 		this.age = age > 100 ? 100 : age;
 	}
 	
-	public Adresse getAdresse() {
+
+	public ArrayList<Adresse> getAdresse() {
 		return adresse;
 	}
 
-	public void setAdresse(Adresse adresse) {
+	public void setAdresse(ArrayList<Adresse> adresse) {
 		this.adresse = adresse;
 	}
 
