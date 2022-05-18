@@ -1,5 +1,7 @@
 package com.ajc.app.model;
 
+import java.util.Objects;
+
 public class City {
 	private String name;
 	private String country;
@@ -72,6 +74,25 @@ public class City {
 		this.capital = capital;
 		this.definCategory();
 
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(country, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		City other = (City) obj;
+		return Objects.equals(country, other.country) && Objects.equals(name, other.name);
 	}
 
 	@Override

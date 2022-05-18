@@ -48,6 +48,7 @@ public class Computer {
 		this.frequency = frequency < 1 ? 1 : frequency;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Computer [id=" + id + ", model=" + model + ", frequency=" + frequency + "]";
