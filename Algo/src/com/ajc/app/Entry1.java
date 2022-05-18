@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import com.ajc.app.model.Adresse;
 import com.ajc.app.model.Orc;
 import com.ajc.app.model.Personne;
 
@@ -17,48 +18,12 @@ public class Entry1 {
 		
 	public static void main(String[] args) {
 		
-		HashMap<Orc, List<Orc>> teams = new HashMap<>();
+		Adresse a = new Adresse(12, "b", "b");
+		Personne p = new Personne("a", "a", a);
 		
-		Orc c1 = new Orc("aa", 100, 10);
-		Orc c2 = new Orc("bb", 100, 10);
+		p.add(a);
 		
-		ArrayList<Orc> t1 = new ArrayList<Orc>();
-		t1.add(new Orc("a1",100, 30));
-		t1.add(new Orc("a2",100, 30));
-		t1.add(new Orc("a3",100, 30));
-		
-		teams.put(c1, t1);
-		
-		teams.put(c2, Arrays.asList(
-					new Orc(30,20),
-					new Orc(30,20),
-					new Orc(50,10)
-				));
-		
-		Set<Orc> chefs = teams.keySet();
-		int count = 0;
-		
-		for (Orc orcChief : chefs) {
-			System.out.println("Chef equipe " + ++count + ":" + orcChief.getName());
-			List<Orc> team = teams.get(orcChief);
-			
-			for (Orc orc : team) {
-				System.out.println("\t"+orc.getName() + "("+ orc.getHealth()+")");
-			}
-		}
-		
-		Set<java.util.Map.Entry<Orc, List<Orc>>> entries = teams.entrySet();
-		
-		for (java.util.Map.Entry<Orc, List<Orc>> entry : entries) {
-			Orc orcChief = entry.getKey(); 
-				System.out.println("Chef equipe " + ++count + ":" + orcChief.getName());
-				List<Orc> team = entry.getValue();
-				
-				for (Orc orc : team) {
-					System.out.println("\t"+orc.getName() + "("+ orc.getHealth()+")");
-				}
-			}
-		}
+	}
 
 	public static void displayMenu() {
 		System.out.println(" * Welcome que voulez vous faire?\n"

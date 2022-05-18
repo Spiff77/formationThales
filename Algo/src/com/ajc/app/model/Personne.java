@@ -7,7 +7,7 @@ public class Personne {
 	private int age = 10;
 	public String prenom;
 	private String nom;
-	private ArrayList<Adresse> adresse = new ArrayList<Adresse>();
+	private ArrayList<Adresse> adresses = new ArrayList<Adresse>();
 	private Horse horse;
 	
 	
@@ -17,20 +17,25 @@ public class Personne {
 		this.age = p.age;
 	}
 	
-	public Personne(String prenom, String nom) {
+	public Personne(String prenom, String nom, Adresse adresse) {
 		this.prenom = prenom;
 		this.nom = nom;
+		this.adresses.add(adresse);
 	}
 	
 	
-	public Personne(String prenom, String nom, int age) {
-		this(prenom, nom);
+	public Personne(String prenom, String nom, int age, Adresse adresse) {
+		this(prenom, nom, adresse);
 		System.out.println("C2");
 		this.setAge(age);
 	}
 	
-	public Personne create(String prenom, String nom, int age) {
-		return new Personne(prenom, nom, age);
+	public void add(Adresse adresse) {
+		this.adresses.add(adresse);
+	}
+	
+	public Personne create(String prenom, String nom, int age, Adresse adresse) {
+		return new Personne(prenom, nom, age, adresse);
 	}
 	
 	public int getAge() {
@@ -41,13 +46,12 @@ public class Personne {
 		this.age = age > 100 ? 100 : age;
 	}
 	
-
-	public ArrayList<Adresse> getAdresse() {
-		return adresse;
+	public ArrayList<Adresse> getAdresses() {
+		return adresses;
 	}
 
-	public void setAdresse(ArrayList<Adresse> adresse) {
-		this.adresse = adresse;
+	public void setAdresses(ArrayList<Adresse> adresse) {
+		this.adresses = adresse;
 	}
 
 	public String getPrenom() {
@@ -76,7 +80,7 @@ public class Personne {
 
 	@Override
 	public String toString() {
-		return "Personne [age=" + age + ", prenom=" + prenom + ", nom=" + nom + ", adresse=" + adresse + "]";
+		return "Personne [age=" + age + ", prenom=" + prenom + ", nom=" + nom + ", adresses=" + adresses + "]";
 	}
 	
 }
