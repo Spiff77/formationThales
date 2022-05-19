@@ -16,6 +16,11 @@ import com.ajc.app.model.Parking;
 import com.ajc.app.model.Personne;
 import com.ajc.app.model.Product;
 import com.ajc.app.model.Singleton;
+import com.ajc.app.model.WeekDay;
+import com.ajc.app.model.resto.Commande;
+import com.ajc.app.model.resto.Eboisson;
+import com.ajc.app.model.resto.Edessert;
+import com.ajc.app.model.resto.Eplat;
 import com.ajc.app.model.singleton.Centraliser;
 import com.ajc.app.model.singleton.Computer;
 import com.ajc.app.model.singleton.Printer;
@@ -25,26 +30,19 @@ public class Entry1 {
 	static Scanner sc= new Scanner(System.in);
 		
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Eboisson boissonClient = null;
 		
-		Printer p1 = new Printer("Epson");
-		Printer p2 = new Printer("Canon");
+		Eboisson[] boisson = Eboisson.values();
 		
-		Centraliser.getInstance().add(p1);
-		Centraliser.getInstance().add(p2);
+		for (int i = 0; i < boisson.length; i++) {
+			System.out.println(i + "/" +boisson[i].getName());
+		}
 		
-		Computer c1 = new Computer("compta");
-		Computer c2 = new Computer("dev");
-		Computer c3 = new Computer("sales");
+		Commande c = new Commande("1",Eboisson.valueOf(sc.next().toUpperCase()), Eplat.COUSCOUS,Edessert.MOUSSE);
 
-		
-		c1.print("toto");
-		c3.print("toto");
-		c2.print("toto");
-		c2.print("toto");
-		c3.print("toto");
-		c1.print("toto");
-		c1.print("toto");
-		
+		System.out.println("Le prix total de la commande " + c.getName() + " est de " +c.calculPrixTotal());
+	
 	} 
 
 	public static void displayMenu() {

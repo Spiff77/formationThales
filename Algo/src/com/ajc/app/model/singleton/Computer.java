@@ -1,12 +1,17 @@
 package com.ajc.app.model.singleton;
 
+import com.ajc.app.model.WeekDay;
+
 public class Computer {
 	
 	private String name;
+	private WeekDay updateDay;
 
-	public Computer(String name) {
+
+	public Computer(String name, WeekDay updateDay) {
 		super();
 		this.name = name;
+		this.updateDay = updateDay;
 	}
 
 	public String getName() {
@@ -15,6 +20,16 @@ public class Computer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	
+	
+	public WeekDay getUpdateDay() {
+		return updateDay;
+	}
+
+	public void setUpdateDay(WeekDay updateDay) {
+		this.updateDay = updateDay;
 	}
 
 	@Override
