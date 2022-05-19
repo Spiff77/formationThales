@@ -5,6 +5,7 @@ public class BankInfo {
 	private int number;
 	private String bankName;
 	
+	
 	public BankInfo(int number, String bankName) {
 		super();
 		this.number = number;

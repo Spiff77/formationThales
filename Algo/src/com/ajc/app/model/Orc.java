@@ -7,7 +7,15 @@ public class Orc {
 	private String name = "NameLess";
 	private int health;
 	private int force;
+	private Adresse adresse;
 	
+	
+	
+	public Orc(String name, Adresse adresse) {
+		super();
+		this.name = name;
+		this.adresse = adresse;
+	}
 	public Orc(String name, int health, int force) {
 		this(health, force);
 		this.name = name;
@@ -39,10 +47,7 @@ public class Orc {
 	public void setForce(int force) {
 		this.force = force;
 	}
-	@Override
-	public String toString() {
-		return "Orc [name=" + name + ", health=" + health + ", force=" + force + "]";
-	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(name);

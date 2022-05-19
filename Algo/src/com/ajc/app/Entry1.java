@@ -7,10 +7,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.ajc.app.model.Adresse;
+import com.ajc.app.model.Eleve;
 import com.ajc.app.model.Orc;
+import com.ajc.app.model.Parking;
 import com.ajc.app.model.Personne;
+import com.ajc.app.model.Product;
+import com.ajc.app.model.Singleton;
+import com.ajc.app.model.singleton.Centraliser;
+import com.ajc.app.model.singleton.Computer;
+import com.ajc.app.model.singleton.Printer;
 
 public class Entry1 {
 	
@@ -18,12 +26,26 @@ public class Entry1 {
 		
 	public static void main(String[] args) {
 		
-		Adresse a = new Adresse(12, "b", "b");
-		Personne p = new Personne("a", "a", a);
+		Printer p1 = new Printer("Epson");
+		Printer p2 = new Printer("Canon");
 		
-		p.add(a);
+		Centraliser.getInstance().add(p1);
+		Centraliser.getInstance().add(p2);
 		
-	}
+		Computer c1 = new Computer("compta");
+		Computer c2 = new Computer("dev");
+		Computer c3 = new Computer("sales");
+
+		
+		c1.print("toto");
+		c3.print("toto");
+		c2.print("toto");
+		c2.print("toto");
+		c3.print("toto");
+		c1.print("toto");
+		c1.print("toto");
+		
+	} 
 
 	public static void displayMenu() {
 		System.out.println(" * Welcome que voulez vous faire?\n"
