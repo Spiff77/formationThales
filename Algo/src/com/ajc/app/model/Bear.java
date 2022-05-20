@@ -1,11 +1,11 @@
 package com.ajc.app.model;
 
-public class Dog extends AnimalCarnivor{
+public class Bear extends AnimalCarnivor{
 
 
 	private String pedigre;
 	
-	public Dog(String name, String pedigre) {
+	public Bear(String name, String pedigre) {
 		super(name);
 		this.pedigre = pedigre;
 	}
@@ -16,8 +16,7 @@ public class Dog extends AnimalCarnivor{
 	
 	@Override
 	public void manger() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Miam la brebis");
 	}
 	
 	@Override

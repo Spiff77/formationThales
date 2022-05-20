@@ -1,11 +1,9 @@
 package com.ajc.app.model;
 
-public class Animal {
+public abstract class Animal {
 	
 	private String name;
 	private int age;
-	
-	
 	
 	public Animal(String name, int age) {
 		super();
@@ -18,9 +16,9 @@ public class Animal {
 		this.name = name;
 	}
 
-	public void sayHello() {
-		System.out.println("L'animal dit bonjour");
-	}
+	public abstract void sayHello();
+	
+	public abstract void manger();
 
 	public String getName() {
 		return name;

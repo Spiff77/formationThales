@@ -8,11 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.ajc.app.model.Animal;
+import com.ajc.app.model.Cat;
 import com.ajc.app.model.Dog;
 import com.ajc.app.model.bank.Client;
 import com.ajc.app.model.bank.Compte;
 import com.ajc.app.model.bank.CompteEpargne;
 import com.ajc.app.model.bank.CompteSimple;
+import com.ajc.app.model.cars.Boat;
+import com.ajc.app.model.cars.Car;
+import com.ajc.app.model.cars.Owner;
+import com.ajc.app.model.cars.Plane;
+import com.ajc.app.model.cars.Vehicule;
 
 public class Entry1 {
 	
@@ -20,13 +27,27 @@ public class Entry1 {
 		
 	public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
-		Client c1 = new Client("sdfs", "fsf", new CompteSimple(200, 50));
-		c1.add(new CompteEpargne(200, .02f));
-		c1.add(new Compte(200));
+		Owner o = new Owner("JC");
+		o.add(new Car(30, "peugeot"));
+		o.add(new Car(30, "renault"));
+		o.add(new Boat(30, "pajot"));
+		o.add(new Plane(30, "boeing"));
 		
-		c1.getComptes().stream().forEach(System.out::println);
 		
-		System.out.println(c1.calculTotalAvoirs());
+		for (Vehicule v: o.getVehicles()) {
+			v.start();
+			
+			if(v instanceof Boat) {
+				((Boat) v).sail();
+			}
+			if(v instanceof Plane) {
+				((Plane) v).fly();
+			}
+			
+			v.stop();
+		}
+		
+		o.startAll();
 	} 
 
 	public static void displayMenu() {

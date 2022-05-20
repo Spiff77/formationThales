@@ -1,31 +1,26 @@
 package com.ajc.app.model;
 
-public class Dog extends AnimalCarnivor{
+public class Cat extends AnimalCarnivor{
 
 
 	private String pedigre;
 	
-	public Dog(String name, String pedigre) {
+
+	public Cat(String name, String pedigre) {
 		super(name);
 		this.pedigre = pedigre;
 	}
 
 	public void mangeDesCroquettes() {
-		System.out.println("Canigou miamiam");
+		System.out.println("ronron miamiam");
 	}
-	
-	@Override
-	public void manger() {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 	@Override
 	public void sayHello() {
-		System.out.println("wafwaf");
+		System.out.println("maiowmiaow");
 		
 	}
-	
+
 	public String getPedigre() {
 		return pedigre;
 	}
@@ -44,4 +39,16 @@ public class Dog extends AnimalCarnivor{
 		builder.append("]");
 		return builder.toString();
 	}
+
+	@Override
+	public void manger() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	
+	
+	
 }
