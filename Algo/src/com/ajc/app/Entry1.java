@@ -1,6 +1,8 @@
 package com.ajc.app;
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.channels.ClosedByInterruptException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Entry1 {
 	
 	static Scanner sc= new Scanner(System.in);
 		
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
 		Client c1 = new Client("sdfs", "fsf", new CompteSimple(200, 50));
 		c1.add(new CompteEpargne(200, .02f));
@@ -25,8 +27,6 @@ public class Entry1 {
 		c1.getComptes().stream().forEach(System.out::println);
 		
 		System.out.println(c1.calculTotalAvoirs());
-		
-		
 	} 
 
 	public static void displayMenu() {
