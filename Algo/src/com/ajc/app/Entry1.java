@@ -20,34 +20,50 @@ import com.ajc.app.model.cars.Car;
 import com.ajc.app.model.cars.Owner;
 import com.ajc.app.model.cars.Plane;
 import com.ajc.app.model.cars.Vehicule;
+import com.ajc.app.model.game.Berseker;
+import com.ajc.app.model.game.Warrior;
+import com.ajc.app.model.game.Wizard;
 
 public class Entry1 {
 	
 	static Scanner sc= new Scanner(System.in);
 		
 	public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		
-		Owner o = new Owner("JC");
-		o.add(new Car(30, "peugeot"));
-		o.add(new Car(30, "renault"));
-		o.add(new Boat(30, "pajot"));
-		o.add(new Plane(30, "boeing"));
+		Berseker b = new Berseker("b", 100, 15);
+		Wizard w = new Wizard("w", 100, 6, 10);
+		Warrior wa = new Warrior("wa", 100, 10);
 		
 		
-		for (Vehicule v: o.getVehicles()) {
-			v.start();
-			
-			if(v instanceof Boat) {
-				((Boat) v).sail();
-			}
-			if(v instanceof Plane) {
-				((Plane) v).fly();
-			}
-			
-			v.stop();
-		}
+		System.out.println(b);
+		System.out.println(wa);
+		wa.attack(b);
+		wa.attack(b);
+		wa.attack(b);
+		b.useRage(wa);
+		System.out.println(b);
+		System.out.println(wa);
 		
-		o.startAll();
+		System.out.println(b);
+		System.out.println(w);
+		
+		w.attack(b);
+		w.attack(b);
+		w.attack(b);
+
+		b.attack(w);
+		b.attack(w);
+		b.attack(w);
+		b.attack(w);
+		b.attack(w);
+		
+		System.out.println(b);
+		w.spellCast(b);
+		System.out.println(b);
+		System.out.println(w);
+		
+
+		
+	
 	} 
 
 	public static void displayMenu() {
