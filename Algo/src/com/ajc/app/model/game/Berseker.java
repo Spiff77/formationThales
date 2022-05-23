@@ -20,8 +20,8 @@ public class Berseker extends Humanoid{
 	}
 
 	@Override
-	public void attack(Humanoid humanoid) {
-		humanoid.receiveDamage(getAttackPoint());
+	public void attack(Attackable attackable) {
+		attackable.receiveDamage(getAttackPoint());
 	}
 	
 	public void useRage(Humanoid humanoid) {

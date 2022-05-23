@@ -5,10 +5,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.channels.ClosedByInterruptException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import com.ajc.app.model.A;
 import com.ajc.app.model.Animal;
+import com.ajc.app.model.Antilope;
+import com.ajc.app.model.C;
 import com.ajc.app.model.Cat;
 import com.ajc.app.model.Dog;
 import com.ajc.app.model.bank.Client;
@@ -16,63 +22,57 @@ import com.ajc.app.model.bank.Compte;
 import com.ajc.app.model.bank.CompteEpargne;
 import com.ajc.app.model.bank.CompteSimple;
 import com.ajc.app.model.cars.Boat;
-import com.ajc.app.model.cars.Car;
+import com.ajc.app.model.Car;
+import com.ajc.app.model.CarComparator;
+import com.ajc.app.model.CarInfo;
 import com.ajc.app.model.cars.Owner;
 import com.ajc.app.model.cars.Plane;
 import com.ajc.app.model.cars.Vehicule;
 import com.ajc.app.model.game.Berseker;
+import com.ajc.app.model.game.Humanoid;
+import com.ajc.app.model.game.Rock;
 import com.ajc.app.model.game.Warrior;
 import com.ajc.app.model.game.Wizard;
+import com.ajc.model.cars.Bateau;
 
 public class Entry1 {
 	
 	static Scanner sc= new Scanner(System.in);
 		
-	public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Berseker b = new Berseker("b", 100, 15);
-		Wizard w = new Wizard("w", 100, 6, 10);
-		Warrior wa = new Warrior("wa", 100, 10);
+	public static void main(String[] args) throws NoSuchMethodException, SecurityException {
+				
+		sc.nextInt();
 		
 		
-		System.out.println(b);
-		System.out.println(wa);
-		wa.attack(b);
-		wa.attack(b);
-		wa.attack(b);
-		b.useRage(wa);
-		System.out.println(b);
-		System.out.println(wa);
+		Warrior w1 = new Warrior("toto",200, 10);
+		Warrior w2 = new Warrior("tutu",100, 10);
+		Warrior w3 = new Warrior("titi",150, 10);
 		
-		System.out.println(b);
-		System.out.println(w);
+		List<Humanoid> list = new ArrayList<Humanoid>();
 		
-		w.attack(b);
-		w.attack(b);
-		w.attack(b);
-
-		b.attack(w);
-		b.attack(w);
-		b.attack(w);
-		b.attack(w);
-		b.attack(w);
+		list.add(w1);
+		list.add(w2);
+		list.add(w3);
 		
-		System.out.println(b);
-		w.spellCast(b);
-		System.out.println(b);
-		System.out.println(w);
+		Collections.sort(list);
 		
-
+		for (Humanoid humanoid : list) {
+			System.out.println(humanoid);
+		}
 		
-	
-	} 
-
-	public static void displayMenu() {
-		System.out.println(" * Welcome que voulez vous faire?\n"
-				+ "\t * 1/ Ajouter un orc\n"
-				+ "\t * 2/ Lister tous les orcs\n"
-				+ "\t * 3/ Supprimer un orc");
+		List<Car> list2 = new ArrayList<Car>();
+		
+		list2.add(new Car(0, new CarInfo("", "")));
+		list2.add(new Car(100, new CarInfo("", "")));
+		list2.add(new Car(50, new CarInfo("", "")));
+		
+		list2.sort(Comparator.comparingInt(Car::getSpeed));
+		
+		for (Car car : list2) {
+			System.out.println(car);
+			
+		}
 	}
-		
 		
 
 }

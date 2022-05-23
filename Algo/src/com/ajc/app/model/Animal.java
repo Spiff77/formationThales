@@ -1,6 +1,6 @@
 package com.ajc.app.model;
 
-public abstract class Animal {
+public abstract class Animal implements A, B {
 	
 	private String name;
 	private int age;

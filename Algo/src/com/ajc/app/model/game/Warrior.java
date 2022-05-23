@@ -9,9 +9,9 @@ public class Warrior extends Humanoid{
 	}
 
 	@Override
-	public void attack(Humanoid humanoid) {
+	public void attack(Attackable attackable) {
 		this.doubleAttackReady = true;
-		humanoid.receiveDamage(getAttackPoint());
+		attackable.receiveDamage(getAttackPoint());
 	}
 
 	public void doubleAttack(Humanoid humanoid) {

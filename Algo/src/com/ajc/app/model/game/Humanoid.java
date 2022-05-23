@@ -1,6 +1,6 @@
 package com.ajc.app.model.game;
 
-public abstract class Humanoid {
+public abstract class Humanoid implements Attackable, Comparable<Humanoid>{
 
 	protected String name;
 	protected double health;
@@ -13,11 +13,12 @@ public abstract class Humanoid {
 		this.force = force;
 	}
 	
+	@Override
 	public void receiveDamage(double damage) {
 		this.health -= damage;
 	}
 
-	public abstract void attack(Humanoid humanoid);
+	public abstract void attack(Attackable attackable);
 
 	public boolean isAlive() {
 		return health > 0;
@@ -45,6 +46,16 @@ public abstract class Humanoid {
 
 	public void setForce(int force) {
 		this.force = force;
+	}
+	
+	@Override
+	public int compareTo(Humanoid o) {
+		if(this.health > o.health)
+			return 1;
+		else if(this.health < o.health)
+			return -1;
+		else
+			return 0;
 	}
 
 	@Override

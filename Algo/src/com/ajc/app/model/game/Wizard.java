@@ -46,8 +46,8 @@ public class Wizard extends Humanoid{
 	}
 
 	@Override
-	public void attack(Humanoid humanoid) {
-		humanoid.receiveDamage(getAttackPoint());
+	public void attack(Attackable attackable) {
+		attackable.receiveDamage(getAttackPoint());
 		this.mana++;
 	}
 
