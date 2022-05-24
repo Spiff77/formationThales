@@ -1,5 +1,8 @@
 package com.ajc.app.model.game;
 
+import com.ajc.app.model.game.exception.GenevaConventionException;
+import com.ajc.app.model.game.exception.NotEnoughRageException;
+
 public class Berseker extends Humanoid{
 
 	private int rage = 0;
@@ -20,16 +23,20 @@ public class Berseker extends Humanoid{
 	}
 
 	@Override
-	public void attack(Attackable attackable) {
+	public void attack(Attackable attackable) throws GenevaConventionException {
+		if(attackable instanceof Humanoid && ((Humanoid)attackable).getHealth() <= 0) {
+			throw new GenevaConventionException();
+		}
 		attackable.receiveDamage(getAttackPoint());
 	}
 	
-	public void useRage(Humanoid humanoid) {
+	public void useRage(Humanoid humanoid) throws NotEnoughRageException {
 		if(rage >= 8) {
 			this.rage -= 8;
 			humanoid.receiveDamage(getAttackPoint() * 1.5); 
 		}else {
-			System.out.println("Not enough rage");
+			throw new NotEnoughRageException();				
+		
 		}
 	}
 	

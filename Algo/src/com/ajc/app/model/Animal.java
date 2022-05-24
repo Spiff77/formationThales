@@ -1,6 +1,13 @@
 package com.ajc.app.model;
 
-public abstract class Animal implements A, B {
+import java.io.Serializable;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public abstract class Animal implements Serializable{
 	
 	private String name;
 	private int age;
@@ -46,6 +53,8 @@ public abstract class Animal implements A, B {
 		builder.append("]");
 		return builder.toString();
 	}
+
+
 	
 	
 	

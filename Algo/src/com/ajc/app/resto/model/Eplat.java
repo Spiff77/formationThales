@@ -1,4 +1,4 @@
-package com.ajc.app.model.resto;
+package com.ajc.app.resto.model;
 
 public enum Eplat {
 	

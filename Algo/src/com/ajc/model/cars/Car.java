@@ -1,14 +1,21 @@
 package com.ajc.model.cars;
 
-public class Car implements Roulant{
+import java.io.Serializable;
+
+public class Car implements Roulant, Serializable{
 
 	private int gaz;
 	
 
+	public Car(int gaz) {
+		super();
+		this.gaz = gaz;
+	}
+
 	@Override
-	public void avancer() {
-		if(gaz <+ 0) {
-			System.out.println("Pas assez d'essence");
+	public void avancer() throws Exception {
+		if(gaz <= 0) {
+			throw new Exception("Pas assez d'esence");
 		}else {
 			System.out.println("vroom");
 			gaz -= 1;

@@ -1,5 +1,8 @@
-package com.ajc.app.model.resto;
+package com.ajc.app.resto.model;
 
+import lombok.ToString;
+
+@ToString
 public class Commande {
 	private String name;
 	private Eboisson boisson;

@@ -1,80 +1,109 @@
 package com.ajc.app;
 
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.nio.channels.ClosedByInterruptException;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import com.ajc.app.model.A;
-import com.ajc.app.model.Animal;
-import com.ajc.app.model.Antilope;
-import com.ajc.app.model.C;
-import com.ajc.app.model.Cat;
+import java.lang.reflect.Modifier;
+
 import com.ajc.app.model.Dog;
-import com.ajc.app.model.bank.Client;
-import com.ajc.app.model.bank.Compte;
-import com.ajc.app.model.bank.CompteEpargne;
-import com.ajc.app.model.bank.CompteSimple;
-import com.ajc.app.model.cars.Boat;
-import com.ajc.app.model.Car;
-import com.ajc.app.model.CarComparator;
-import com.ajc.app.model.CarInfo;
-import com.ajc.app.model.cars.Owner;
-import com.ajc.app.model.cars.Plane;
-import com.ajc.app.model.cars.Vehicule;
-import com.ajc.app.model.game.Berseker;
-import com.ajc.app.model.game.Humanoid;
-import com.ajc.app.model.game.Rock;
-import com.ajc.app.model.game.Warrior;
-import com.ajc.app.model.game.Wizard;
-import com.ajc.model.cars.Bateau;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Entry1 {
 	
 	static Scanner sc= new Scanner(System.in);
 		
-	public static void main(String[] args) throws NoSuchMethodException, SecurityException {
-				
-		sc.nextInt();
+	public static void main(String[] args) {
+		//serializeJson();
+		deSerializeJson();
+	}
+	
+	
+	public static void deSerializeJson() {
 		
+		Gson gson = new GsonBuilder().create();
+		Path path = new File("test.json").toPath();
 		
-		Warrior w1 = new Warrior("toto",200, 10);
-		Warrior w2 = new Warrior("tutu",100, 10);
-		Warrior w3 = new Warrior("titi",150, 10);
-		
-		List<Humanoid> list = new ArrayList<Humanoid>();
-		
-		list.add(w1);
-		list.add(w2);
-		list.add(w3);
-		
-		Collections.sort(list);
-		
-		for (Humanoid humanoid : list) {
-			System.out.println(humanoid);
-		}
-		
-		List<Car> list2 = new ArrayList<Car>();
-		
-		list2.add(new Car(0, new CarInfo("", "")));
-		list2.add(new Car(100, new CarInfo("", "")));
-		list2.add(new Car(50, new CarInfo("", "")));
-		
-		list2.sort(Comparator.comparingInt(Car::getSpeed));
-		
-		for (Car car : list2) {
-			System.out.println(car);
+		try(Reader reader = Files.newBufferedReader(path)){
 			
+			List<Dog> dogs =Arrays.asList(gson.fromJson(reader, Dog[].class));
+			for (Dog dog : dogs) {
+				System.out.println(dog);
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
+	
+	public static void serializeJson() {
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithModifiers(Modifier.TRANSIENT);
+		Gson gson = builder.create();
+		try(FileOutputStream fw = new FileOutputStream("test.json");
+			OutputStreamWriter out = new OutputStreamWriter(fw)	
+				){
+			ArrayList<Dog> dogs = new ArrayList<Dog>();
+			dogs.add(new Dog("Test", "test"));
+			dogs.add(new Dog("Test1", "test1"));
+			gson.toJson(dogs, out);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void deSerialize() {
+		File f = new File("test.xml");
+		try(
+			FileInputStream fsi = new FileInputStream(f);
+			XMLDecoder ois = new XMLDecoder(fsi);){
 		
+			ArrayList<Dog> dogs =  (ArrayList<Dog>) ois.readObject();
 
+			System.out.println(dogs);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+		
+	public static void serialize() {
+
+		ArrayList<Dog> dogs = new ArrayList<Dog>();
+		dogs.add(new Dog("Test", "test"));
+		dogs.add(new Dog("Test1", "test1"));
+
+
+		try(FileOutputStream fos = new FileOutputStream("test.xml");
+			XMLEncoder out = new XMLEncoder(fos);) {
+
+			out.writeObject(dogs);
+			System.out.println("Done");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 /**

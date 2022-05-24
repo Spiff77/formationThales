@@ -1,6 +1,17 @@
 package com.ajc.app.model;
 
-public interface B {
+public class B {
+
+
+	C c = new C();
 	
-	public void m1();
+	
+	public B() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void hello(){
+		c.hello();
+	}
+
 }

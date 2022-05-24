@@ -1,5 +1,7 @@
 package com.ajc.app.model.game;
 
+import com.ajc.app.model.game.exception.GenevaConventionException;
+
 public class Warrior extends Humanoid{
 
 	private boolean doubleAttackReady;
@@ -9,7 +11,10 @@ public class Warrior extends Humanoid{
 	}
 
 	@Override
-	public void attack(Attackable attackable) {
+	public void attack(Attackable attackable) throws GenevaConventionException {
+		if(attackable instanceof Humanoid && ((Humanoid)attackable).getHealth() <= 0) {
+			throw new GenevaConventionException();
+		}
 		this.doubleAttackReady = true;
 		attackable.receiveDamage(getAttackPoint());
 	}

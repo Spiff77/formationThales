@@ -1,14 +1,14 @@
-package com.ajc.app.model.resto;
+package com.ajc.app.resto.model;
 
-public enum Eboisson {
+public enum Edessert {
 	
-	EAU("Eau Minérale", 1), JUSDORANGE("Jus d'orange", 2), BIERE("Biere", 2.5f);
+	MOUSSE("Mousse au chocolat", 5), GLACE("Glace au citron", 3);
 	
 	private String name;
 	private float price;
 	
 	
-	private Eboisson(String name, float price) {
+	private Edessert(String name, float price) {
 		this.name = name;
 		this.price = price;
 	}

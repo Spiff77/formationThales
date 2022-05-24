@@ -1,5 +1,7 @@
 package com.ajc.app.model.game;
 
+import com.ajc.app.model.game.exception.GenevaConventionException;
+
 public abstract class Humanoid implements Attackable, Comparable<Humanoid>{
 
 	protected String name;
@@ -18,7 +20,7 @@ public abstract class Humanoid implements Attackable, Comparable<Humanoid>{
 		this.health -= damage;
 	}
 
-	public abstract void attack(Attackable attackable);
+	public abstract void attack(Attackable attackable) throws GenevaConventionException;
 
 	public boolean isAlive() {
 		return health > 0;

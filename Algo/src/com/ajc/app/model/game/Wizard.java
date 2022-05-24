@@ -1,5 +1,8 @@
 package com.ajc.app.model.game;
 
+import com.ajc.app.model.game.exception.GenevaConventionException;
+import com.ajc.app.model.game.exception.NotEnoughManaException;
+
 public class Wizard extends Humanoid{
 
 	private int mana = 5;
@@ -16,10 +19,12 @@ public class Wizard extends Humanoid{
 		return this.force * .8;
 	}
 
-	public void spellCast(Humanoid humanoid) {
-		if(this.mana <= 10) {
+	public void spellCast(Humanoid humanoid) throws NotEnoughManaException {
+		if(this.mana >= 10) {
 			humanoid.receiveDamage(getAttackPoint() + intelligence);
 			this.mana -= 10;			
+		}else {
+			throw new NotEnoughManaException();
 		}
 	}
 	
@@ -36,17 +41,20 @@ public class Wizard extends Humanoid{
 		super.receiveDamage(shieldActivated ? damage * 0.8 : damage);
 	}
 	
-	public void activateShield() {
+	public void activateShield() throws NotEnoughManaException {
 		if(this.mana >= 3) {
 			this.shieldActivated = true;
 			this.mana -= 3;
 		}else {
-			System.out.println("Not enough Mana");
+			throw new NotEnoughManaException();
 		}
 	}
 
 	@Override
-	public void attack(Attackable attackable) {
+	public void attack(Attackable attackable) throws GenevaConventionException {
+		if(attackable instanceof Humanoid && ((Humanoid)attackable).getHealth() <= 0) {
+			throw new GenevaConventionException();
+		}
 		attackable.receiveDamage(getAttackPoint());
 		this.mana++;
 	}

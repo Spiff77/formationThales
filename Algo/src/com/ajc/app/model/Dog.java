@@ -1,9 +1,24 @@
 package com.ajc.app.model;
 
-public class Dog extends AnimalCarnivor{
+import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@NoArgsConstructor
+public class Dog extends AnimalCarnivor implements Serializable{
+	
+	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	private Product product;
 
 
-	private String pedigre;
+	private transient String pedigre;
 	
 	public Dog(String name, String pedigre) {
 		super(name);
@@ -37,11 +52,17 @@ public class Dog extends AnimalCarnivor{
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Dog [pedigre=");
+		builder.append("Dog [product=");
+		builder.append(product);
+		builder.append(", pedigre=");
 		builder.append(pedigre);
+		builder.append(", quantiteViande=");
+		builder.append(quantiteViande);
 		builder.append(", toString()=");
 		builder.append(super.toString());
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	
 }
