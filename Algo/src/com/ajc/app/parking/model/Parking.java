@@ -3,13 +3,14 @@ package com.ajc.app.parking.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ajc.app.parking.model.observer.Subject;
 
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
 @Getter @Setter
-public class Parking<T> {
+public class Parking<T> extends Subject{
 
 	private List<T> vehicles = new ArrayList<>();
 	
@@ -18,12 +19,19 @@ public class Parking<T> {
 	@NonNull
 	private String name;
 	
+	private int capacity = 15;
+	
 	private List<TollGate> tollGates = new ArrayList<TollGate>();
 
 	
-	
-	public void add(T vehicle) {
+	public void park(T vehicle) {
 		this.vehicles.add(vehicle);
+		this.notifAll();
+	}
+	
+	public void exit(T vehicle) {
+		this.vehicles.remove(vehicle);
+		this.notifAll();
 	}
 	
 	public int calculTotalPrice() {
@@ -61,6 +69,11 @@ public class Parking<T> {
 	
 	public enum Direction {
 		IN, OUT, INOUT;
+	}
+
+	@Override
+	public void notifAll() {
+		this.getObservers().forEach(o -> o.update("Parking spot left: " + (this.capacity - this.vehicles.size())));
 	}
 	
 	

@@ -2,7 +2,7 @@ package com.ajc.app.model.game;
 
 import com.ajc.app.model.game.exception.GenevaConventionException;
 
-public class Warrior extends Humanoid{
+public class Warrior extends Humanoid implements Observer{
 
 	private boolean doubleAttackReady;
 	
@@ -51,6 +51,13 @@ public class Warrior extends Humanoid{
 		builder.append(force);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	@Override
+	public void update(Action action) {
+		if(action == Action.HEAL) {
+			this.health = 100;
+		}
 	}
 
 

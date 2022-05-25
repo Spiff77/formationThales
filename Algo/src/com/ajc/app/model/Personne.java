@@ -9,6 +9,7 @@ public class Personne {
 	private String nom;
 	private ArrayList<Adresse> adresses = new ArrayList<Adresse>();
 	private Horse horse;
+	private boolean alive = true;
 	
 	
 	public Personne(Personne p) {
@@ -24,19 +25,15 @@ public class Personne {
 	}
 	
 	
-	public Personne(String prenom, String nom, int age, Adresse adresse) {
-		this(prenom, nom, adresse);
-		System.out.println("C2");
-		this.setAge(age);
+	public Personne(String prenom, String nom) {
+		this.prenom = prenom;
+		this.nom = nom;
 	}
 	
 	public void add(Adresse adresse) {
 		this.adresses.add(adresse);
 	}
 	
-	public Personne create(String prenom, String nom, int age, Adresse adresse) {
-		return new Personne(prenom, nom, age, adresse);
-	}
 	
 	public int getAge() {
 		return age;
@@ -64,6 +61,16 @@ public class Personne {
 
 	public String getNom() {
 		return nom;
+	}
+	
+	
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
 
 	public void setNom(String nom) {

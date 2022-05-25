@@ -20,12 +20,31 @@ import java.util.Scanner;
 
 import java.lang.reflect.Modifier;
 
+import com.ajc.app.model.Adresse;
 import com.ajc.app.model.Dog;
+import com.ajc.app.model.Personne;
+import com.ajc.app.model.PersonneBuilder;
+import com.ajc.app.model.bank.BankCard;
+import com.ajc.app.model.bank.BankCardAdapter;
+import com.ajc.app.model.bank.CardReader;
+import com.ajc.app.model.bank.RegisteredUserCard;
+import com.ajc.app.model.cars.Vehicule;
+import com.ajc.app.model.game.Action;
+import com.ajc.app.model.game.Map;
+import com.ajc.app.model.game.Player;
 import com.ajc.app.parking.model.Parking;
 import com.ajc.app.parking.model.Parking.TollGate;
+import com.ajc.app.parking.model.adapter.CD;
+import com.ajc.app.parking.model.adapter.CDAdapter;
+import com.ajc.app.parking.model.adapter.K7;
+import com.ajc.app.parking.model.adapter.RadioK7;
+import com.ajc.app.parking.model.factory.VehiculeFactory;
+import com.ajc.app.parking.model.factory.VehiculeType;
+import com.ajc.app.parking.model.observer.CitySign;
 import com.ajc.app.parking.model.RegisteredCar;
 import com.ajc.app.parking.model.TollGatePayable;
 import com.ajc.app.parking.model.Truck;
+import com.ajc.app.parking.model.Vehicle;
 import com.ajc.app.resto.model.Commande;
 import com.ajc.app.resto.model.Eboisson;
 import com.ajc.app.resto.model.Edessert;
@@ -37,7 +56,16 @@ import com.google.gson.GsonBuilder;
 public class Entry1 {
 	
 	public static void main(String[] args) {
-
+		Parking p = new Parking<Vehicle>("CDG", "JeanClaude");
+		
+		CitySign c1 = new CitySign();
+		CitySign c2 = new CitySign();
+		
+		p.attach(c1);
+		p.attach(c2);
+		
+		p.notifAll();
+		p.park(new RegisteredCar("sffs", "sfdfs"));
 	}
 }
 
