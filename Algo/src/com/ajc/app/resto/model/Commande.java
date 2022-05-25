@@ -1,5 +1,8 @@
 package com.ajc.app.resto.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.ToString;
 
 @ToString
@@ -8,6 +11,19 @@ public class Commande {
 	private Eboisson boisson;
 	private Eplat plat;
 	private Edessert dessert;
+	private Ticket ticket;
+	
+	public class Ticket {
+		private List<String> lines = new ArrayList();
+		
+		public Ticket() {
+			System.out.println(Commande.this.name);
+		}
+	}
+	public enum Machin{
+		A,B,C;
+	}
+	
 	
 	public Commande(String name, Eboisson boisson, Eplat plat, Edessert dessert) {
 		super();
@@ -18,6 +34,7 @@ public class Commande {
 	}
 	
 	public float calculPrixTotal() {
+		this.ticket = new Ticket();
 		return this.boisson.getPrice() + this.plat.getPrice() + this.dessert.getPrice();
 	}
 

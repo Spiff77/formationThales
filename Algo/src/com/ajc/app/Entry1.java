@@ -21,88 +21,23 @@ import java.util.Scanner;
 import java.lang.reflect.Modifier;
 
 import com.ajc.app.model.Dog;
+import com.ajc.app.parking.model.Parking;
+import com.ajc.app.parking.model.Parking.TollGate;
+import com.ajc.app.parking.model.RegisteredCar;
+import com.ajc.app.parking.model.TollGatePayable;
+import com.ajc.app.parking.model.Truck;
+import com.ajc.app.resto.model.Commande;
+import com.ajc.app.resto.model.Eboisson;
+import com.ajc.app.resto.model.Edessert;
+import com.ajc.app.resto.model.Eplat;
+import com.ajc.app.resto.model.Commande.Ticket;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Entry1 {
 	
-	static Scanner sc= new Scanner(System.in);
-		
 	public static void main(String[] args) {
-		//serializeJson();
-		deSerializeJson();
-	}
-	
-	
-	public static void deSerializeJson() {
-		
-		Gson gson = new GsonBuilder().create();
-		Path path = new File("test.json").toPath();
-		
-		try(Reader reader = Files.newBufferedReader(path)){
-			
-			List<Dog> dogs =Arrays.asList(gson.fromJson(reader, Dog[].class));
-			for (Dog dog : dogs) {
-				System.out.println(dog);
-			}
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public static void serializeJson() {
-		GsonBuilder builder = new GsonBuilder();
-		builder.excludeFieldsWithModifiers(Modifier.TRANSIENT);
-		Gson gson = builder.create();
-		try(FileOutputStream fw = new FileOutputStream("test.json");
-			OutputStreamWriter out = new OutputStreamWriter(fw)	
-				){
-			ArrayList<Dog> dogs = new ArrayList<Dog>();
-			dogs.add(new Dog("Test", "test"));
-			dogs.add(new Dog("Test1", "test1"));
-			gson.toJson(dogs, out);
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public static void deSerialize() {
-		File f = new File("test.xml");
-		try(
-			FileInputStream fsi = new FileInputStream(f);
-			XMLDecoder ois = new XMLDecoder(fsi);){
-		
-			ArrayList<Dog> dogs =  (ArrayList<Dog>) ois.readObject();
 
-			System.out.println(dogs);
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-		
-	public static void serialize() {
-
-		ArrayList<Dog> dogs = new ArrayList<Dog>();
-		dogs.add(new Dog("Test", "test"));
-		dogs.add(new Dog("Test1", "test1"));
-
-
-		try(FileOutputStream fos = new FileOutputStream("test.xml");
-			XMLEncoder out = new XMLEncoder(fos);) {
-
-			out.writeObject(dogs);
-			System.out.println("Done");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }
 
