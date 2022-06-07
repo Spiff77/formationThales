@@ -13,8 +13,13 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@PrimaryKeyJoinColumn(name = "bike_id")
 public class Bike extends Vehicle{
+
+
+	public Bike(VehicleId id, int year, Option option, int nbGears) {
+		super(id, year, option);
+		this.nbGears = nbGears;
+	}
 
 	private int nbGears;
 

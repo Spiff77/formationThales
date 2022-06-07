@@ -22,5 +22,11 @@ public class Engine {
 	@OneToOne(mappedBy = "engine")
 	private Car car;
 
+	public Engine(String model, int power) {
+		super();
+		this.model = model;
+		this.power = power;
+	}
+
 
 }

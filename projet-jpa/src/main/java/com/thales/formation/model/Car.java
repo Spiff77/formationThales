@@ -14,12 +14,14 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "cars")
-@PrimaryKeyJoinColumn(name = "car_id")
 public class Car  extends Vehicle{
-	
 
 	@OneToOne
 	private Engine engine;
+
+	public Car(VehicleId id, int year, Option option) {
+		super(id, year, option);
+	}
 
 
 

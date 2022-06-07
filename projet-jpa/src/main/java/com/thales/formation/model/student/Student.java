@@ -1,8 +1,11 @@
 package com.thales.formation.model.student;
 
 import java.util.Collection;
+import java.util.Date;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,21 +16,15 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name="eleve")
 public class Student {
 
-	@Id
-	@Column(name="code_eleve")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
-	@Column(name="nom")
-	private String lastName;
-	
-	@Column(name="prenom")
-	private String firstName;
+	@EmbeddedId
+	private StudentId id;
 	
 	@Column(name="annee_entree")
 	private int entranceYear;
@@ -40,9 +37,12 @@ public class Student {
 	@JoinColumn(name="ecole")
 	private School school;
 	
+	@Embedded
+	private Address address;
+	
 	@ManyToMany
 	@JoinTable(name="elv_cou", 
-	joinColumns = @JoinColumn(name= "eleve_id"), 
+	joinColumns = {@JoinColumn(name= "nomEleve"), @JoinColumn(name= "prenomEleve"), @JoinColumn(name= "dateNaissanceEleve")}, 
 	inverseJoinColumns = @JoinColumn(name = "cours_id"))
 	private Collection<Course> courses;
 
