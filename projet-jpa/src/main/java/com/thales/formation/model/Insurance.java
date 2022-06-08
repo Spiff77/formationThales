@@ -2,6 +2,7 @@ package com.thales.formation.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,8 +16,16 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.SecondaryTable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 
 @Entity
+@NoArgsConstructor
+@Getter @Setter
+@ToString
 @SecondaryTable(name= "insurance_details", pkJoinColumns = @PrimaryKeyJoinColumn(name="insu_id"))
 public class Insurance{
 
@@ -28,7 +37,8 @@ public class Insurance{
 	private double amount;
 	
 	@ManyToMany(mappedBy = "insurances")
-	private Collection<Owner> beneficaries = new ArrayList<Owner>();
+	@ToString.Exclude
+	private List<Owner> beneficaries = new ArrayList<Owner>();
 	
 	@Column(table = "insurance_details")
 	private double coeficient;
@@ -59,14 +69,6 @@ public class Insurance{
 		this.amount = amount;
 	}
 
-	public Collection<Owner> getBeneficaries() {
-		return beneficaries;
-	}
-
-	public void setBeneficaries(Collection<Owner> beneficaries) {
-		this.beneficaries = beneficaries;
-	}
-
 	public double getCoeficient() {
 		return coeficient;
 	}
@@ -82,6 +84,7 @@ public class Insurance{
 	public void setTaux(double taux) {
 		this.taux = taux;
 	}
+	
 	
 	
 	

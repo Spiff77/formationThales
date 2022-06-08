@@ -1,5 +1,7 @@
 package com.thales.formation.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +14,7 @@ public class B {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name = "nom", length = 40, unique = true)
 	private String bName;
 	
 	@OneToOne(mappedBy = "b")
