@@ -13,6 +13,8 @@ import com.thales.formation.model.Insurance;
 import com.thales.formation.model.Option;
 import com.thales.formation.model.Owner;
 import com.thales.formation.model.VehicleId;
+import com.thales.formation.model.student.dao.EngineDAO;
+import com.thales.formation.model.student.dao.EngineDaoJpa;
 import com.thales.formation.model.student.utils.ConnectionManager;
 
 import jakarta.persistence.EntityManager;
@@ -28,27 +30,17 @@ import jakarta.transaction.Transaction;
 public class Entry {
 
 	public static void main(String[] args) {
-		EntityManager em = ConnectionManager.getInstance().getEmf().createEntityManager();
-
-		B b = em.find(B.class, 3);
 		
-		em.getTransaction().begin();
-		
-		em.remove(b);
-		
-		em.getTransaction().commit();
-		
-		em.close();
-		ConnectionManager.getInstance().close();
-		
+		EngineDAO dao = new EngineDaoJpa();
+		dao.findAllByPower(300);
 		
 	}
 
 	private static void typedQueryEx() {
 		EntityManager em = ConnectionManager.getInstance().getEmf().createEntityManager();
 		
-		TypedQuery<Car> query = em.createQuery("SELECT c FROM Car c WHERE c.engine.power > :power", Car.class);
-		query.setParameter("power", 100);
+		TypedQuery<Car> query = em.createQuery("SELECT c FROM Car c WHERE c.brand LIKE :brand", Car.class);
+		query.setParameter("brand", "%e%");
 		
 		List<Car> cars = query.getResultList();
 		

@@ -5,9 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+@NamedQuery(name="getAllEnginePowerAbove2000", query="SELECT e from Engine e where e.power > 2000")
 @Entity
 @Table(name = "engine")
 public class Engine {
